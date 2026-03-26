@@ -26,9 +26,13 @@ export default function _layout() {
 			/>
 			<Stack.Screen name="login" options={{ title: 'Login', presentation: 'modal' }} />
 			<Stack.Screen name="[missing]" options={{ title: '404' }} />
-            <Stack.Screen name="(tabs)" options={{
-                headerShown: false
-             }} />
+			<Stack.Screen name="reminders/create" options={{ title: 'Create Reminder' }} />
+			<Stack.Screen
+				name="(tabs)"
+				options={{
+					headerShown: false,
+				}}
+			/>
 		</Stack>
 	)
 }
