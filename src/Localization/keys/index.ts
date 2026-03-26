@@ -10,5 +10,6 @@ export enum LocalizationKey {
 	CREATE_REMINDER_SUBMIT = 'createReminder.submit',
 	CREATE_REMINDER_SUCCESS = 'createReminder.success',
 	CREATE_REMINDER_ERROR_REQUIRED = 'createReminder.errorRequired',
+	CREATE_REMINDER_DUE_DATE_INVALID = 'createReminder.dueDateInvalid',
 }
 

@@ -12,4 +12,5 @@ export const en = {
 	[LocalizationKey.CREATE_REMINDER_SUBMIT]: 'Create Reminder',
 	[LocalizationKey.CREATE_REMINDER_SUCCESS]: 'Reminder created successfully',
 	[LocalizationKey.CREATE_REMINDER_ERROR_REQUIRED]: 'Title is required',
+	[LocalizationKey.CREATE_REMINDER_DUE_DATE_INVALID]: 'Invalid date format',
 }

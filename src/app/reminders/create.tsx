@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { i18n, LocalizationKey } from '@/Localization'
 import { Colors, MetricsSizes, FontSize } from '@/Theme/Variables'
 import { addReminder, setLoading, setError } from '@/Store/reducers/remindersReducer'
-import { createReminder, Priority } from '@/Services/reminders'
+import { createReminder, Priority, ValidationError } from '@/Services/reminders'
 import type { AppDispatch, RootState } from '@/Store'
 
 const PRIORITIES: Priority[] = ['low', 'medium', 'high']
@@ -38,6 +38,11 @@ export default function CreateReminderScreen() {
 			return
 		}
 
+		if (dueDate.trim() && isNaN(Date.parse(dueDate.trim()))) {
+			setInlineError(i18n.t(LocalizationKey.CREATE_REMINDER_DUE_DATE_INVALID))
+			return
+		}
+
 		dispatch(setLoading(true))
 		dispatch(setError(null))
 
@@ -56,10 +61,14 @@ export default function CreateReminderScreen() {
 				dispatch(setLoading(false))
 				Alert.alert(i18n.t(LocalizationKey.CREATE_REMINDER_SUCCESS))
 				router.back()
+			} else if (result.validationErrors === null) {
+				// 401 — session expired, clearAuth already dispatched by service
+				dispatch(setLoading(false))
+				router.replace('/login')
 			} else {
 				const errorMessage =
-					result.validationErrors && result.validationErrors.length > 0
-						? result.validationErrors.map((e) => e.msg).join('\n')
+					result.validationErrors.length > 0
+						? result.validationErrors.map((e: ValidationError) => e.msg).join('\n')
 						: i18n.t(LocalizationKey.CREATE_REMINDER_ERROR_REQUIRED)
 				dispatch(setError(errorMessage))
 				dispatch(setLoading(false))

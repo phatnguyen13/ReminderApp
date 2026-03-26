@@ -12,4 +12,5 @@ export const vi = {
 	[LocalizationKey.CREATE_REMINDER_SUBMIT]: 'Tạo nhắc nhở',
 	[LocalizationKey.CREATE_REMINDER_SUCCESS]: 'Tạo nhắc nhở thành công',
 	[LocalizationKey.CREATE_REMINDER_ERROR_REQUIRED]: 'Tiêu đề là bắt buộc',
+	[LocalizationKey.CREATE_REMINDER_DUE_DATE_INVALID]: 'Định dạng ngày không hợp lệ',
 }

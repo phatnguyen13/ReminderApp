@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 export type Priority = 'low' | 'medium' | 'high'
 
 export interface Reminder {
-	id: number
+	id: string
 	title: string
 	description: string | null
 	due_date: string | null
