@@ -12,18 +12,20 @@ import {
 	PURGE,
 	REGISTER,
 } from 'redux-persist'
-import { homeReducers, themeReducers } from './reducers'
+import { homeReducers, themeReducers, remindersReducer, authReducer } from './reducers'
 
 const reducers = combineReducers({
 	api: API.reducer,
 	theme: themeReducers,
 	home: homeReducers,
+	auth: authReducer,
+	reminders: remindersReducer,
 })
 
 const persistConfig = {
 	key: 'root',
 	storage: AsyncStorage,
-	whitelist: ['theme'],
+	whitelist: ['theme', 'auth'],
 }
 
 const persistedReducer = persistReducer(persistConfig, reducers)
@@ -51,3 +53,6 @@ const persistor = persistStore(store)
 setupListeners(store.dispatch)
 
 export { store, persistor }
+
+export type RootState = ReturnType<typeof reducers>
+export type AppDispatch = typeof store.dispatch
